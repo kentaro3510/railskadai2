@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+
+<h2>プロフィール編集 </h2>
+
+<%= form_with model: current_user,url: users_profile_path, method: "PUT"  do |f| %>
+  <%= render "devise/shared/error_messages", resource: current_user %>
+
+<div class="form-group">
+    <%= f.label :画像 %><br />
+    <%= f.file_field :image, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :名前 %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :自己紹介 %><br />
+    <%= f.text_area :profile, autofocus: true %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= f.submit "更新" %>
+  </div>
+<% end %>
+
+
+<div>Unhappy? <%= button_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+<%= link_to "戻る", :back %>
+
+  </div>
+</div>

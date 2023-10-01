@@ -1,0 +1,67 @@
+<%= render "shared/error", obj: @reservation %>
+
+<% if flash[:success] %>
+  <p class="success"><%= flash[:success] %></p>
+<% end %>
+
+<p><%= link_to "←戻る", own_rooms_path %></p>
+<% if current_user.id == @room.user_id %>
+  <p><%= link_to "編集", edit_room_path(@room.id) %></p>
+<% end %>
+
+<div class ="container">
+
+  <div class ="image_zone">
+    <% if @room.image.attached? %>
+      <%= image_tag @room.image, :size => '120x100'%>
+    <%else%>
+      <%= image_tag 'default-room-image.png' %>
+    <% end %>
+  </div>
+
+  <div class ="details_of_hotel">
+    <p><%= @room.name_of_hotel %></p>
+    <p>¥<%= @room.price %>〜</p>
+    <p>★★★★★</p>
+    <p><%= @room.address %></p>
+    <p><%= @room.introduction %></p>
+  </div>
+
+<%= debug current_user %>
+
+
+<% if current_user && current_user.id == @room.user_id %>
+  <p><%= link_to "編集", edit_room_path(@room.id) %></p>
+<% end %>
+
+  <!--reservations/confirmへ-->
+  <%= form_with model: @reservation, url: confirm_reservations_path(@reservation), local: true do |f| %>
+
+    <%= f.hidden_field :room_id, value:@room.id %>
+    <%= f.hidden_field :user_id, value:current_user.id %>
+
+      <table>
+        <tr>
+          <th><%= f.label :checkin_date, "チェックイン", class: "control-label" %></th>
+          <td><%= f.date_field :checkin_date, class: "form-control" %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :checkout_date, "チェックアウト", class: "control-label" %></th>
+          <td><%= f.date_field :checkout_date, class: "form-control" %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :number_of_people, "人数" %></th>
+          <td><%= f.number_field :number_of_people, min: 1 %></td>
+        </tr>
+      </table>
+
+      <div>
+        <ul>
+          <li><%= f.submit "予約する"%></li>
+        </ul>
+      </div>
+  <% end %>
+
+</div>

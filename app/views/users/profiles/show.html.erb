@@ -1,0 +1,31 @@
+<h1>設定</h1>
+
+<%= stylesheet_link_tag "users", :media => "all" %>
+
+<div class ="UserContainer">
+  <ul class="SideNav">
+    <li class ="SideNav_account"><%= link_to "アカウント",:users_account %>
+    </li>
+    <li class ="SideNav_profile"><%= link_to "プロフィール",:users_profile %>
+    </li>
+  </ul>
+
+  <div class ="AccountInformation">
+    <div class ="AccountInformation_header">
+      <h3>プロフィール</h3>
+      <h3 class ="AccountInformation_edit"><%= link_to "編集", edit_users_profile_path %></h3>
+    </div>
+  </div>
+
+</div>
+
+<div class ="AccountInformation_input-group">
+    <p>アイコン画像: 
+      <% if current_user.image.attached? %>
+        <%= image_tag current_user.image, :size => '80x60'%>
+      <%else%>
+        <%= image_tag 'default-avatar.png', class:"user_icon" %>
+      <% end %></p>
+    <p>名前: <%= current_user.name %></p>
+    <p>自己紹介: <%= current_user.profile %></p>
+</div>
