@@ -13,4 +13,15 @@ class Reservation < ApplicationRecord
     errors.add(:checkout_date, "(チェックアウト)はチェックイン以降の日付を選択してください" )if checkout_date < checkin_date
   end
 
+validate :checkin_date_cannot_be_in_the_past
+
+validates :number_of_people, numericality: { greater_than_or_equal_to: 1 }
+
+def checkin_date_cannot_be_in_the_past
+  if checkin_date && checkin_date < Date.today
+    errors.add(:checkin_date, "can't be in the past")
+  end
+end
+
+
 end

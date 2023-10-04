@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   # ログイン、アカウント編集後、任意のページに推移させるための記述
   devise_for :users
-  root to: "home#index"
+  root "home#index"
 
   #サインアップページ「/users/sign_up」でエラーが発生した場合、「/users」にリダイレクトされるのを防ぐため
   #「devise_scope :users」以下の記述を追記して、任意のルーティングをさせています。
