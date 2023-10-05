@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: MyString
+  name_of_hotel: MyString
+  introduction: MyText
+  price: 1
+  address: MyText
+  checkin_date: 2023-03-15
+  checkout_date: 2023-03-15
+  number_of_people: 1
+
+two:
+  image: MyString
+  name_of_hotel: MyString
+  introduction: MyText
+  price: 1
+  address: MyText
+  checkin_date: 2023-03-15
+  checkout_date: 2023-03-15
+  number_of_people: 1

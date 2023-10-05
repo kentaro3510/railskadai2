@@ -13,3 +13,66 @@
  *= require_tree .
  *= require_self
  */
+body {
+  padding-top: 70px;
+}
+
+.header_logo {
+  width: 221px;
+  margin-left: 20px;
+}
+
+.user_icon {
+  width: 40px;
+  height: 40px;
+}
+
+.dropdown-menu li a {
+  text-decoration: none;
+  color: black;
+}
+
+.logout {
+  text-align: center;
+  
+}
+
+/*まだサインインしていない場合       */
+.login {
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.register_new {
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
+  background-color: #ff7757;
+  border-radius: 0.25rem;
+  padding: 10px;
+}
+
+.user_resigter {
+  margin-right: 20px;
+}
+
+
+.FirstView {
+  background-image: url(https://rails-02-sample.herokuapp.com/assets/home/cover-lg.jpg);
+  background-size: cover;
+  height: 180vh;
+  background-position: 50%;
+  background-position: 50%;
+}
+
+.FirstView_title {
+  color: #fff;
+  font-family: Lato, sans-serif;
+  font-size: 84px;
+  font-weight: 400;
+  line-height: 101px;
+  margin-bottom: 48px;
+  text-align: center;
+  padding-top: 150px;
+}

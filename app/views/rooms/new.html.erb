@@ -1,0 +1,45 @@
+<%= render "shared/error", obj: @room %>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+
+    <h3>新規作成</h3>
+
+    <%= form_with model: @room, local: true do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :name_of_hotel, "施設名" %></th>
+          <td><%= f.text_field :name_of_hotel %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :introduction, "施設詳細" %></th>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :price, "料金" %></th>
+          <td><%= f.text_field :price %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :address, "住所" %></th>
+          <td><%= f.text_field :address %></td>
+        </tr>
+
+        <tr>
+          <th><%= f.label :image, "施設画像" %></th>
+          <td><%= f.file_field :image, autofocus: true %></td>
+        </tr>
+      </table>
+
+      <div>
+        <ul>
+          <li><%= f.submit "保存"%></li>
+          <li><%= link_to "キャンセル", :own_rooms %></li>
+        </ul>
+      </div>
+    <% end %>
+
+  </div>
+</div>

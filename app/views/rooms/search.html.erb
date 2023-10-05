@@ -1,0 +1,42 @@
+<h1>検索</h1>
+<%= form_with url: search_rooms_path, method: :get, local: true do |f| %>
+  <%= f.text_field :address, :placeholder => "エリア名を入力"%>
+  <%= f.text_field :keyword, :placeholder => "キーワード名を入力"%>
+  <%= f.submit :search %>
+<% end %>
+
+<a><%= "#{@rooms.count}件が見つかりました。" %></a>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">画像</th>
+      <th scope="col">施設名</th>
+      <th scope="col">住所</th>
+      <th scope="col"></th>
+      <th scope="col">紹介文</th>
+      <th scope="col">料金</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td>
+          <% if room.image.attached? %>
+            <%= image_tag room.image, size: "120x70"%>
+          <%else%>
+            <%= image_tag 'default-room-image.png', size: "120x70"%>
+          <% end %>
+        </td>
+        <td><%= link_to "#{room.name_of_hotel}", [room] %></td>
+        <td><%= room.address %></td>
+        <td>★★★★★</td>
+        <td><%= room.introduction %></td>
+        <td>¥<%= room.price %>〜</td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

@@ -1,0 +1,30 @@
+<%= render "shared/error", obj: @reservation %>
+
+<h2><%="#{@reservation.room.name_of_hotel}"%>を再予約する</h2>
+
+<%= form_with model: @reservation, url: confirm_reservations_path(id: @reservation.id), method: :post, local: true do |f| %>
+  <%= hidden_field_tag :reservation_id, @reservation.id %>
+    <table>
+      <tr>
+        <th><%= f.label :checkin_date, "チェックイン", class: "control-label" %></th>
+        <td><%= f.date_field :checkin_date, class: "form-control" %></td>
+      </tr>
+      
+      <tr>
+        <th><%= f.label :checkout_date, "チェックアウト", class: "control-label" %></th>
+        <td><%= f.date_field :checkout_date, class: "form-control" %></td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :number_of_people, "人数" %></th>
+        <td><%= f.number_field :number_of_people, min: 1 %></td>
+      </tr>
+    </table>
+
+    <div>
+      <ul>
+        <li><%= f.submit "再予約する"%></li>
+        <li><%= link_to "キャンセル", :back %></li>
+      </ul>
+    </div>
+<% end %>

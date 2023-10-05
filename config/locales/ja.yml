@@ -1,0 +1,16 @@
+ja:
+  devise:
+    sessions:
+      user:
+        signed_in: "ユーザーとしてログインしました。"
+        signed_out: "ユーザーとしてログアウトしました。"
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+    registrations:
+      user:
+        signed_up: "アカウント登録が完了しました。"
+      signed_up: "登録が完了しました。"
+    messages:
+      blank: "を入力してください"
+      invalid: "が無効です"
+

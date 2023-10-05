@@ -1,0 +1,40 @@
+<h3>予約済み一覧</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">画像</th>
+      <th scope="col">施設名</th>
+      <th scope="col">紹介文</th>
+      <th scope="col">合計料金</th>
+      <th scope="col">チェックイン</th>
+      <th scope="col">チェックアウト</th>
+      <th scope="col">予約確定日時</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td>
+          <% if reservation.room.image .present?%>
+            <%=image_tag reservation.room.image, size: '120x70' %>
+          <%else%>
+            <%= image_tag 'default-room-image.png', size: '120x70' %>
+          <% end %>
+        </td>
+        <!--下記roomの詳細へのpathは、引数としてidを渡す必要あり。(reservation.room)-->
+        <td><%= link_to "#{reservation.room.name_of_hotel}", room_path(reservation.room) %></td>
+        <td><%= reservation.room.introduction %></td>
+        <td><%= reservation.amount_of_price %></td>
+        <td><%= reservation.checkin_date.strftime("%Y/%m/%d") %></td>
+        <td><%= reservation.checkout_date.strftime("%Y/%m/%d") %></td>
+        <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td><%= link_to "再予約", edit_reservation_path(reservation.id) %></td>
+        <td><%= link_to "予約を削除", reservation, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

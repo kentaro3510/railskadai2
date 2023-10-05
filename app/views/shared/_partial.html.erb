@@ -1,0 +1,44 @@
+<!-- ヘッダーパーシャル-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="http://localhost:3000">
+    <img class="header_logo" src="https://rails-02-sample.herokuapp.com/assets/common/logo.png" alt="Potepan Share"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="d-flex justify-content-between">
+        <!-- もし既にサインインしていた場合-->
+        <% if user_signed_in? %>  
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <% if current_user.image.attached? %>
+                    <%= image_tag current_user.image, :size => '40x30'%>
+                  <%else%>
+                    <%= image_tag 'default-avatar.png', class:"user_icon" %>
+                  <% end %>
+                  <%= current_user.name %>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                  <li><a class="dropdown-item" href="/rooms/new">施設の新規登録</a></li>
+                  <li><a class="dropdown-item" href="/reservations">予約済み一覧</a></li>
+                  <li><a class="dropdown-item" href="/rooms/own">登録済み一覧</a></li>
+                  <li><a class="dropdown-item" href="/users/account">アカウント設定</a></li>
+                  <li class="logout"><a class="dropdown-item" >
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete%></a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        <!-- まだサインインしていない場合-->
+        <% else %>
+          <div class="user_resigter">
+            <%= link_to "ログイン", new_user_session_path, class: 'login' %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'register_new' %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</nav>
